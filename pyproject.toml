@@ -1,0 +1,25 @@
+[project]
+name = "arbokit"
+version = "0.1.0"
+description = "UI Kit for OpenForest applications"
+authors = [
+    {name = "Gerrux",email = "kalinin.i.v@edu.narfu.ru"}
+]
+license = "MIT"
+readme = "README.md"
+requires-python = ">=3.11,<3.14"
+dependencies = [
+    "pyside6 (>=6.9.0,<7.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.5"
+pytest-qt = "^4.4.0"
+sphinx = "^8.2.3"
+sphinx-rtd-theme = "^3.0.2"
+
