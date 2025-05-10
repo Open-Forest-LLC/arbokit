@@ -1,13 +1,13 @@
 from arbokit.styles import Styles
-from arbokit.colors import ThemeColors
+from arbokit.colors import Colors
 
 
 def test_button_base_style():
     style = Styles.button_base_style(
-        ThemeColors.SUCCESS,
-        ThemeColors.SUCCESS_HOVER,
-        ThemeColors.SUCCESS_PRESSED,
-        ThemeColors.BACKGROUND
+        Colors.SUCCESS,
+        Colors.SUCCESS_HOVER,
+        Colors.SUCCESS_PRESSED,
+        Colors.BACKGROUND
     )
     assert "background-color: #009345" in style
     assert "border-radius: 4px" in style

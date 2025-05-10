@@ -1,5 +1,6 @@
-from arbokit.colors import ThemeColors
+from arbokit.colors import Colors
+
 
 def test_colors():
-    assert ThemeColors.PRIMARY == "#353535"
-    assert ThemeColors.SUCCESS == "#009345"
+    assert Colors.PRIMARY == "#353535"
+    assert Colors.SUCCESS == "#009345"

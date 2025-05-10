@@ -17,16 +17,8 @@ jobs:
         run: pip install poetry
       - name: Install dependencies
         run: poetry install
-      - name: Run non-Qt tests
-        run: poetry run pytest -m "not qt"
-      - name: Run Qt tests
-        run: |
-          export QT_QPA_PLATFORM=offscreen
-          poetry run pytest -m qt
-      - name: Run linters
-        run: |
-          poetry run mypy src
-          poetry run flake8 src
+      - name: Run all checks
+        run: poetry run check
       - name: Build docs
         run: poetry run make -C docs html
 
@@ -42,5 +34,5 @@ jobs:
         run: pip install poetry
       - name: Install dependencies
         run: poetry install
-      - name: Run non-Qt tests
-        run: poetry run pytest -m "not qt"
+      - name: Run all checks
+        run: poetry run check

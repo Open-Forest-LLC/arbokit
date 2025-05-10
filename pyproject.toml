@@ -20,9 +20,12 @@ pytest-qt = "^4.4.0"
 sphinx = "^8.2.3"
 sphinx-rtd-theme = "^3.0.2"
 pre-commit = "^4.2.0"
-flake8 = "^7.2.0"
 mypy = "^1.15.0"
+black = "^25.1.0"
+ruff = "^0.11.9"
 
+[tool.poetry.scripts]
+check = "scripts.check:run_checks"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
@@ -38,3 +41,15 @@ ignore_missing_imports = true
 [[tool.mypy.overrides]]
 module = "PySide6.*"
 ignore_missing_imports = true
+
+[tool.ruff]
+line-length = 100
+lint.select = ["E", "W", "F", "I", "C"]
+lint.ignore = ["E501", "E203"]
+lint.extend-select = ["I"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"

@@ -1,14 +1,17 @@
-from arbokit.colors import ThemeColors
+from arbokit.colors import Colors
 from arbokit.spacing import Spacing
 
 
 class Styles:
     """Генерация QSS-стилей для UI компонентов."""
-    Colors = ThemeColors()
+
+    Colors = Colors()
     Spacing = Spacing()
 
     @staticmethod
-    def button_base_style(bg_color: str, hover_color: str, pressed_color: str, text_color: str) -> str:
+    def button_base_style(
+        bg_color: str, hover_color: str, pressed_color: str, text_color: str
+    ) -> str:
         """Базовый стиль для кнопок."""
         return f"""
             QPushButton {{
@@ -63,7 +66,7 @@ class Styles:
             cls.Colors.SUCCESS,
             cls.Colors.SUCCESS_HOVER,
             cls.Colors.SUCCESS_PRESSED,
-            cls.Colors.BACKGROUND
+            cls.Colors.BACKGROUND,
         )
 
     @classmethod
@@ -73,5 +76,5 @@ class Styles:
             cls.Colors.ERROR,
             cls.Colors.ERROR_HOVER,
             cls.Colors.ERROR_PRESSED,
-            cls.Colors.BACKGROUND
+            cls.Colors.BACKGROUND,
         )

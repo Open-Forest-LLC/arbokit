@@ -2,11 +2,12 @@ from pathlib import Path
 from typing import Dict
 
 from PySide6.QtCore import QSize
-from PySide6.QtGui import QIcon, QPainter, QColor
+from PySide6.QtGui import QColor, QIcon, QPainter
 
 
 class Icons:
     """Динамическая генерация иконок."""
+
     _ICONS: Dict[str, str] = {}
 
     @classmethod

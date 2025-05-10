@@ -1,12 +1,15 @@
 import logging
 from pathlib import Path
 from typing import Optional
+
 from PySide6.QtGui import QFont, QFontDatabase
 
 logger = logging.getLogger(__name__)
 
+
 class Typography:
     """Управление шрифтами для ArboKit UI Kit."""
+
     BRAND: Optional[QFont] = None
     BASE: Optional[QFont] = None
     H1: Optional[QFont] = None

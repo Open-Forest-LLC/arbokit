@@ -1,7 +1,8 @@
 from dataclasses import dataclass
 
+
 @dataclass(frozen=True)
-class ThemeColors:
+class Colors:
     PRIMARY: str = "#353535"
     BRAND: str = "#009345"
     BACKGROUND_MAIN: str = "#F9FAFB"
