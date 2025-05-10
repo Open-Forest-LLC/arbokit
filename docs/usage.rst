@@ -1,13 +1,26 @@
-To use ArboKit in your project, install it via Poetry:
+Usage
+=====
 
-.. code-block:: bash
+This section describes how to use the ArboKit UI Kit in your PySide6 applications.
 
-   poetry add git+https://github.com/Open-Forest-LLC/arbokit.git
+Getting Started
+---------------
 
-Example:
+1. Install ArboKit using Poetry:
 
-.. code-block:: python
+   .. code-block:: bash
 
-   from arbokit.components.button import CustomButton
+      poetry add arbokit
 
-   button = CustomButton("Click me")
+2. Import and use components in your application:
+
+   .. code-block:: python
+
+      from arbokit.palettes import Palettes
+      from PySide6.QtWidgets import QApplication
+
+      app = QApplication([])
+      palette = Palettes.light_palette()
+      app.setPalette(palette)
+
+See the API documentation for detailed usage of each module.

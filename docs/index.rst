@@ -1,7 +1,7 @@
 .. ArboKit documentation
 
 Welcome to ArboKit's documentation!
-==================================
+===================================
 
 .. toctree::
    :maxdepth: 2
@@ -13,6 +13,7 @@ Welcome to ArboKit's documentation!
    api/palettes
    api/styles
    api/typography
+   api/icons
 
 Indices and tables
 ==================

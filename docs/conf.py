@@ -6,6 +6,10 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
+import os
+import sys
+sys.path.insert(0, os.path.abspath('../..'))
+
 project = 'arbokit'
 copyright = '2025, Gerrux'
 author = 'Gerrux'
@@ -18,6 +22,7 @@ extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.napoleon',
     'sphinx.ext.viewcode',
+    'sphinx_rtd_theme',
 ]
 
 templates_path = ['_templates']
@@ -30,6 +35,14 @@ language = 'ru'
 
 html_theme = 'sphinx_rtd_theme'
 html_static_path = ['_static']
+html_baseurl = 'https://open-forest-llc.github.io/arbokit/'
+html_theme_options = {
+    'collapse_navigation': False,
+    'sticky_navigation': True,
+    'navigation_depth': 4,
+    'includehidden': True,
+    'titles_only': False
+}
 
 # Автодокументация для Python модулей
-autodoc_mock_imports = ['PySide6']
+autodoc_mock_imports = ['PySide6', "PyYAML"]
