@@ -8,7 +8,7 @@
 
 import os
 import sys
-sys.path.insert(0, os.path.abspath('../..'))
+sys.path.insert(0, os.path.abspath('..'))
 
 project = 'arbokit'
 copyright = '2025, Gerrux'
@@ -45,4 +45,4 @@ html_theme_options = {
 }
 
 # Автодокументация для Python модулей
-autodoc_mock_imports = ['PySide6', "PyYAML"]
+autodoc_mock_imports = ['PySide6', "PyYAML", "QtWidgets", "QtGui", "QtCore"]
