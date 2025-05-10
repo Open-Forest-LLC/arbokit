@@ -1,0 +1,54 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+*.egg-info/
+dist/
+build/
+*.whl
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Poetry
+poetry.lock
+.pypoetry/
+
+# PyCharm
+.idea/
+*.iml
+
+# Testing
+.pytest_cache/
+coverage/
+.coverage
+*.cover
+htmlcov/
+tox/
+nox/
+
+# Documentation
+docs/_build/
+docs/build/
+
+# System files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*.bak
+*.tmp
+*.log
+
+# Miscellaneous
+*.env
+*.local
+*.cache
+*.bak
+*.backup
