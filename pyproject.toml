@@ -9,7 +9,8 @@ license = "MIT"
 readme = "README.md"
 requires-python = ">=3.11,<3.14"
 dependencies = [
-    "pyside6 (>=6.9.0,<7.0.0)"
+    "pyside6 (>=6.9.0,<7.0.0)",
+    "pyyaml (>=6.0.2,<7.0.0)"
 ]
 
 
@@ -22,4 +23,13 @@ pytest = "^8.3.5"
 pytest-qt = "^4.4.0"
 sphinx = "^8.2.3"
 sphinx-rtd-theme = "^3.0.2"
+pre-commit = "^4.2.0"
+flake8 = "^7.2.0"
+mypy = "^1.15.0"
 
+[tool.black]
+line-length = 100
+
+[tool.mypy]
+strict = true
+ignore_missing_imports = true

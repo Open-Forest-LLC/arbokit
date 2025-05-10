@@ -9,15 +9,36 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: '3.11'
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libegl1 libxkbcommon-x11-0 libgl1-mesa-dev
       - name: Install Poetry
         run: pip install poetry
       - name: Install dependencies
         run: poetry install
       - name: Run tests
-        run: poetry run pytest
+        run: |
+          export QT_QPA_PLATFORM=offscreen
+          poetry run pytest --qt-api=pyside6
       - name: Run linters
         run: |
           poetry run mypy src
           poetry run flake8 src
       - name: Build docs
         run: poetry run make -C docs html
+
+  test-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      - name: Install Poetry
+        run: pip install poetry
+      - name: Install dependencies
+        run: poetry install
+      - name: Run tests
+        run: poetry run pytest --qt-api=pyside6 -m "not qt"
