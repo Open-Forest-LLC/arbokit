@@ -17,10 +17,12 @@ jobs:
         run: pip install poetry
       - name: Install dependencies
         run: poetry install
-      - name: Run tests
+      - name: Run non-Qt tests
+        run: poetry run pytest -m "not qt"
+      - name: Run Qt tests
         run: |
           export QT_QPA_PLATFORM=offscreen
-          poetry run pytest --qt-api=pyside6
+          poetry run pytest -m qt
       - name: Run linters
         run: |
           poetry run mypy src
@@ -40,5 +42,5 @@ jobs:
         run: pip install poetry
       - name: Install dependencies
         run: poetry install
-      - name: Run tests
-        run: poetry run pytest --qt-api=pyside6 -m "not qt"
+      - name: Run non-Qt tests
+        run: poetry run pytest -m "not qt"

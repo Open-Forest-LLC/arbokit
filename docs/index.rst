@@ -9,6 +9,9 @@ Welcome to ArboKit's documentation!
 
    usage
    api/colors
+   api/spacing
+   api/palettes
+   api/styles
    api/typography
 
 Indices and tables
