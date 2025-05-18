@@ -1,16 +1,13 @@
-from arbokit.colors import Colors
-from arbokit.spacing import Spacing
+from ArboKit.colors import Colors
+from ArboKit.spacing import Spacing
 
 
 class Styles:
     """Генерация QSS-стилей для UI компонентов."""
 
-    Colors = Colors()
-    Spacing = Spacing()
-
     @staticmethod
     def button_base_style(
-        bg_color: str, hover_color: str, pressed_color: str, text_color: str
+        bg_color: str, hover_color: str, pressed_color: str, text_color: str, spacing: Spacing
     ) -> str:
         """Базовый стиль для кнопок."""
         return f"""
@@ -20,7 +17,7 @@ class Styles:
                 border: none;
                 padding: 4px 8px;
                 border-radius: 4px;
-                qproperty-iconSize: {Styles.Spacing.DOUBLE_GRID}px {Styles.Spacing.DOUBLE_GRID}px;
+                qproperty-iconSize: {spacing.L}px {spacing.L}px;
             }}
             QPushButton > QIcon {{
                 color: {text_color};
@@ -34,47 +31,55 @@ class Styles:
         """
 
     @classmethod
-    def styled_line_edit(cls, border_color: str = Colors.P20) -> str:
+    def styled_line_edit(
+        cls, colors: Colors, spacing: Spacing, border_color: str = None, theme: str = "light"
+    ) -> str:
         """Стиль для QLineEdit."""
+        border_color = border_color or colors.P20
+        text_color = colors.PRIMARY if theme == "light" else colors.BACKGROUND
         return f"""
             QLineEdit {{
                 border: 1px solid {border_color};
-                border-radius: {cls.Spacing.HALF_GRID}px;
-                padding: {cls.Spacing.HALF_GRID}px;
-                background-color: {cls.Colors.BACKGROUND};
-                color: {cls.Colors.PRIMARY};
+                border-radius: {spacing.S}px;
+                padding: {spacing.S}px;
+                background-color: {colors.BACKGROUND};
+                color: {text_color};
             }}
             QLineEdit:hover {{
-                border: 1px solid {cls.Colors.P70};
-                background-color: {cls.Colors.BACKGROUND_MAIN};
+                border: 1px solid {colors.P70};
+                background-color: {colors.BACKGROUND_MAIN};
             }}
             QLineEdit:focus {{
-                border: 1px solid {cls.Colors.BRAND};
-                background-color: {cls.Colors.BACKGROUND};
+                border: 1px solid {colors.BRAND};
+                background-color: {colors.BACKGROUND};
             }}
             QLineEdit:disabled {{
-                background-color: {cls.Colors.P10};
-                color: {cls.Colors.P40};
-                border: 1px solid {cls.Colors.P40};
+                background-color: {colors.P10};
+                color: {colors.P40};
+                border: 1px solid {colors.P40};
             }}
         """
 
     @classmethod
-    def success_button_style(cls) -> str:
+    def success_button_style(cls, colors: Colors, spacing: Spacing, theme: str = "light") -> str:
         """Стиль для кнопок успеха."""
+        text_color = colors.BACKGROUND if theme == "light" else colors.PRIMARY
         return cls.button_base_style(
-            cls.Colors.SUCCESS,
-            cls.Colors.SUCCESS_HOVER,
-            cls.Colors.SUCCESS_PRESSED,
-            cls.Colors.BACKGROUND,
+            colors.SUCCESS,
+            colors.SUCCESS_HOVER,
+            colors.SUCCESS_PRESSED,
+            text_color,
+            spacing,
         )
 
     @classmethod
-    def error_button_style(cls) -> str:
+    def error_button_style(cls, colors: Colors, spacing: Spacing, theme: str = "light") -> str:
         """Стиль для кнопок ошибки."""
+        text_color = colors.BACKGROUND if theme == "light" else colors.PRIMARY
         return cls.button_base_style(
-            cls.Colors.ERROR,
-            cls.Colors.ERROR_HOVER,
-            cls.Colors.ERROR_PRESSED,
-            cls.Colors.BACKGROUND,
+            colors.ERROR,
+            colors.ERROR_HOVER,
+            colors.ERROR_PRESSED,
+            text_color,
+            spacing,
         )

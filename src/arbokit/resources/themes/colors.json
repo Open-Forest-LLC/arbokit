@@ -1,0 +1,19 @@
+{
+    "PRIMARY": "#353535",
+    "BRAND": "#009345",
+    "BACKGROUND_MAIN": "#F9FAFB",
+    "BACKGROUND": "#FFFFFF",
+    "P70": "#626262",
+    "P40": "#A5A5A5",
+    "P20": "#D2D2D2",
+    "P10": "#E4E4E4",
+    "SUCCESS": "#009345",
+    "SUCCESS_HOVER": "#4DB47D",
+    "SUCCESS_PRESSED": "#006730",
+    "ERROR": "#FF5959",
+    "ERROR_HOVER": "#FF8B8B",
+    "ERROR_PRESSED": "#B33E3E",
+    "WARNING": "#D07E00",
+    "WARNING_HOVER": "#DFA54D",
+    "WARNING_PRESSED": "#925800"
+}

@@ -1,0 +1,52 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource>
+    <file>icons/add.svg</file>
+    <file>icons/arrow_left.svg</file>
+    <file>icons/arrow_right.svg</file>
+    <file>icons/calculator.svg</file>
+    <file>icons/calendar.svg</file>
+    <file>icons/check.svg</file>
+    <file>icons/chevron.svg</file>
+    <file>icons/chevron_up.svg</file>
+    <file>icons/chunk.svg</file>
+    <file>icons/cloud.svg</file>
+    <file>icons/delete.svg</file>
+    <file>icons/document.svg</file>
+    <file>icons/double_arrow_left.svg</file>
+    <file>icons/double_arrow_right.svg</file>
+    <file>icons/download_data.svg</file>
+    <file>icons/drive.svg</file>
+    <file>icons/edit.svg</file>
+    <file>icons/excel.svg</file>
+    <file>icons/filter.svg</file>
+    <file>icons/flash.svg</file>
+    <file>icons/folder.svg</file>
+    <file>icons/gallery.svg</file>
+    <file>icons/generate.svg</file>
+    <file>icons/global.svg</file>
+    <file>icons/grid.svg</file>
+    <file>icons/home.svg</file>
+    <file>icons/info.svg</file>
+    <file>icons/input_data.svg</file>
+    <file>icons/key.svg</file>
+    <file>icons/keyboard.svg</file>
+    <file>icons/map.svg</file>
+    <file>icons/mask.svg</file>
+    <file>icons/menu.svg</file>
+    <file>icons/play.svg</file>
+    <file>icons/presentation.svg</file>
+    <file>icons/process.svg</file>
+    <file>icons/search.svg</file>
+    <file>icons/settings.svg</file>
+    <file>icons/settings2.svg</file>
+    <file>icons/settings3d.svg</file>
+    <file>icons/shapefile.svg</file>
+    <file>icons/stop.svg</file>
+    <file>icons/tasks.svg</file>
+    <file>icons/timer.svg</file>
+    <file>icons/trash.svg</file>
+    <file>icons/tree.svg</file>
+    <file>icons/upload_data.svg</file>
+    <file>icons/warning.svg</file>
+</qresource>
+</RCC>

@@ -1,22 +1,56 @@
+import json
+import re
 from dataclasses import dataclass
+from pathlib import Path
 
 
 @dataclass(frozen=True)
 class Colors:
-    PRIMARY: str = "#353535"
-    BRAND: str = "#009345"
-    BACKGROUND_MAIN: str = "#F9FAFB"
-    BACKGROUND: str = "#FFFFFF"
-    P70: str = "#626262"
-    P40: str = "#A5A5A5"
-    P20: str = "#D2D2D2"
-    P10: str = "#E4E4E4"
-    SUCCESS: str = "#009345"
-    SUCCESS_HOVER: str = "#4DB47D"
-    SUCCESS_PRESSED: str = "#006730"
-    ERROR: str = "#FF5959"
-    ERROR_HOVER: str = "#FF8B8B"
-    ERROR_PRESSED: str = "#B33E3E"
-    WARNING: str = "#D07E00"
-    WARNING_HOVER: str = "#DFA54D"
-    WARNING_PRESSED: str = "#925800"
+    PRIMARY: str
+    BRAND: str
+    BACKGROUND_MAIN: str
+    BACKGROUND: str
+    P70: str
+    P40: str
+    P20: str
+    P10: str
+    SUCCESS: str
+    SUCCESS_HOVER: str
+    SUCCESS_PRESSED: str
+    ERROR: str
+    ERROR_HOVER: str
+    ERROR_PRESSED: str
+    WARNING: str
+    WARNING_HOVER: str
+    WARNING_PRESSED: str
+
+    @staticmethod
+    def _validate_hex(color: str) -> str:
+        """Проверяет, что строка является валидным HEX-цветом."""
+        if not re.match(r"^#[0-9A-Fa-f]{6}$", color):
+            raise ValueError(f"Невалидный HEX-цвет: {color}")
+        return color
+
+    @classmethod
+    def load(cls) -> "Colors":
+        """Загружает цвета из JSON."""
+        color_file = Path(__file__).parent / "resources" / "themes" / "colors.json"
+        print(f"Попытка загрузки: {color_file}")
+        if not color_file.exists():
+            raise FileNotFoundError(f"Файл цветов {color_file} не найден")
+
+        with color_file.open(encoding="utf-8") as f:
+            colors = json.load(f)
+        print(f"Загружены цвета: {colors}")
+
+        # Проверяем, что все поля dataclass присутствуют
+        required_fields = {f.name for f in cls.__dataclass_fields__.values()}
+        missing_fields = required_fields - set(colors.keys())
+        if missing_fields:
+            raise ValueError(f"В {color_file} отсутствуют поля: {missing_fields}")
+
+        # Валидация
+        for color in colors.values():
+            cls._validate_hex(color)
+
+        return cls(**colors)

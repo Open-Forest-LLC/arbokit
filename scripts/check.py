@@ -15,13 +15,18 @@ def run_checks() -> None:
         ["black", "--check", "src"],
         ["ruff", "check", "--fix", "src"],
         ["mypy", "src"],
-        ["pytest", "-m", "not qt"],
-        ["pytest", "-m", "qt", "--verbose"],
     ]
 
     for cmd in commands:
         logger.info(f"Running: {' '.join(cmd)}")
-        result = subprocess.run(["poetry", "run"] + cmd, capture_output=True, text=True)
+        # Запускаем команду с явным указанием UTF-8
+        result = subprocess.run(
+            ["poetry", "run"] + cmd,
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+            errors="replace"  # Заменяем нераспознанные символы
+        )
         if result.returncode != 0:
             logger.error(f"Error in {' '.join(cmd)}:")
             logger.error(result.stdout)

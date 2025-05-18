@@ -1,38 +1,50 @@
-from pathlib import Path
-from typing import Dict
-
+from typing import Optional, ClassVar
 from PySide6.QtCore import QSize
-from PySide6.QtGui import QColor, QIcon, QPainter
+from PySide6.QtGui import QIcon, QColor, QPixmap, QPainter, Qt
+from PySide6.QtSvg import QSvgRenderer
 
 
-class Icons:
-    """Динамическая генерация иконок."""
+class IconProvider:
+    """Управление иконками из QRC ресурсов."""
 
-    _ICONS: Dict[str, str] = {}
-
-    @classmethod
-    def load_icons(cls) -> None:
-        """Загружает пути к SVG-иконкам из resources/icons."""
-        icon_dir = Path(__file__).parent / "resources" / "icons"
-        for svg in icon_dir.glob("*.svg"):
-            cls._ICONS[svg.stem] = str(svg)
+    _renderer_cache: ClassVar[dict[str, QSvgRenderer]] = {}
+    DEFAULT_ICON_SIZE = QSize(16, 16)
 
     @classmethod
-    def get_icon(cls, name: str) -> QIcon:
-        """Возвращает иконку по имени."""
-        if not cls._ICONS:
-            cls.load_icons()
-        if name not in cls._ICONS:
-            raise ValueError(f"Иконка '{name}' не найдена")
-        return QIcon(cls._ICONS[name])
+    def get_icon(cls, name: str, size: Optional[QSize] = None) -> QIcon:
+        """Возвращает иконку по имени (без .svg)."""
+        resource_path = f":/icons/{name}.svg"
+        print(f"Загрузка иконки: {resource_path}")
+        if not QSvgRenderer(resource_path).isValid():
+            raise ValueError(f"Иконка '{name}' не найдена в ресурсах")
+
+        icon = QIcon(resource_path)
+        if size:
+            pixmap = icon.pixmap(size)
+            icon = QIcon(pixmap)
+        return icon
 
     @classmethod
-    def create_colored_icon(cls, name: str, color: str, size: QSize = QSize(16, 16)) -> QIcon:
-        """Создает иконку с заданным цветом."""
-        icon = cls.get_icon(name)
-        pixmap = icon.pixmap(size)
+    def get_colored_icon(cls, name: str, color: str, size: QSize = DEFAULT_ICON_SIZE) -> QIcon:
+        """Создаёт иконку с заданным цветом."""
+        resource_path = f":/icons/{name}.svg"
+        print(f"Загрузка цветной иконки: {resource_path}")
+
+        if resource_path not in cls._renderer_cache:
+            renderer = QSvgRenderer(resource_path)
+            if not renderer.isValid():
+                raise ValueError(f"Иконка '{name}' не найдена")
+            cls._renderer_cache[resource_path] = renderer
+
+        renderer = cls._renderer_cache[resource_path]
+        pixmap = QPixmap(size)
+        pixmap.fill(Qt.transparent)  # type: ignore[attr-defined]
         painter = QPainter(pixmap)
-        painter.setCompositionMode(QPainter.CompositionMode.SourceIn)  # type: ignore[attr-defined]
-        painter.fillRect(pixmap.rect(), QColor(color))
-        painter.end()
+        try:
+            renderer.render(painter)
+            painter.setCompositionMode(QPainter.CompositionMode_SourceIn)  # type: ignore[attr-defined]
+            painter.fillRect(pixmap.rect(), QColor(color))
+        finally:
+            painter.end()
+
         return QIcon(pixmap)
